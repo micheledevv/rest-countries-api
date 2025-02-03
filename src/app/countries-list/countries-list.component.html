@@ -1,1 +1,24 @@
-<p>countries-list works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @for (country of listCountries; track $index) {
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-2">
+                            <img class="img-fluid" src="{{country.flags.svg}}" alt="">
+                        </div>
+
+                        <h3>{{country.name}}</h3>
+                        <small>Population: {{country.population}}</small>
+                        <small>Region: {{country.region}}</small>
+                        <small>Capital: {{country.capital}}</small>
+
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
