@@ -3,6 +3,7 @@ import { CountriesService } from './countries.service';
 import { Country } from '../models/countryDTO';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CountryService } from '../utils/country.service';
 
 @Component({
   selector: 'app-countries-list',
@@ -15,7 +16,7 @@ export class CountriesListComponent {
   listCountries: Partial<Country>[] = [];
   isCountryDetailsPage = false;
 
-  constructor(private httpCountries: CountriesService, private router: Router) {
+  constructor(private httpCountries: CountriesService, private router: Router, private countryService: CountryService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isCountryDetailsPage = event.url.includes('/country-details');
@@ -27,6 +28,7 @@ export class CountriesListComponent {
     this.httpCountries.getCountriesList().subscribe({
       next: (res) => {
         this.listCountries = res;
+        this.countryService.loadCountries(res)
       },
       error: (err) => {
         console.error("Errore nel recupero dei dati:", err);
