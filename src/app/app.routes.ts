@@ -4,7 +4,7 @@ import { CountriesListComponent } from './countries-list/countries-list.componen
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-    { path: '', component: CountriesListComponent, pathMatch: 'full' },
+    { path: '', component: CountriesListComponent},
     { path: 'country-details', component: CountryDetailsComponent },
     { path: '**', component: PageNotFoundComponent }
 ];

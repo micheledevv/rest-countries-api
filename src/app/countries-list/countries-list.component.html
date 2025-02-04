@@ -9,7 +9,7 @@
                         <p class="card-text">
                             <strong>Population:</strong> {{country.population}} <br>
                             <strong>Region:</strong> {{country.region}} <br>
-                            <strong>Capital:</strong> {{country.capital}}
+                            <strong>Capital:</strong> {{country.capital ? country.capital : 'Capitale non esistente'}}
                         </p>
                     </div>
                 </div>

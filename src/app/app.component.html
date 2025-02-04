@@ -1,3 +1,6 @@
 <app-nav></app-nav>
 <app-search-input></app-search-input>
-<app-countries-list></app-countries-list>
+<router-outlet></router-outlet>
+<app-countries-list *ngIf="!isCountryDetailsPage"></app-countries-list>
+
+
