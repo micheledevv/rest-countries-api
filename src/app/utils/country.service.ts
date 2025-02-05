@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Country } from '../models/countryDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
-  private subject = new BehaviorSubject<any>(null);  
-  observableSubject = this.subject.asObservable(); 
+  private selectedCountrySubject = new BehaviorSubject<Country | null>(null);
+  selectedCountry$ = this.selectedCountrySubject.asObservable();
 
-  loadCountries(data: any) {
-    this.subject.next(data);  
+  selectCountry(country: Country) {
+    this.selectedCountrySubject.next(country);
   }
 }

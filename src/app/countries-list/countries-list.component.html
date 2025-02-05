@@ -1,8 +1,8 @@
 <div class="container-fluid mt-4">
     <div class="row">
         @for (country of listCountries; track $index) {
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 h-100 ">
-                <div (click)="detailsCountry()" class="card h-100 d-flex flex-column cursor-pointer">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 h-100">
+                <div (click)="detailsCountry(country)" class="card h-100 d-flex flex-column cursor-pointer">
                     <img class="card-img-top" src="{{country.flags.svg}}" alt="{{country.name}} flag" style="height: 150px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{country.name}}</h5>
@@ -14,7 +14,6 @@
                     </div>
                 </div>
             </div>
-            
         }
     </div>
 </div>

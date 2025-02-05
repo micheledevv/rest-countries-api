@@ -1,12 +1,66 @@
-<div class="container mt-5 ">
-    <div class="row">
-        <div class="col-6 d-flex justify-content-center align-items-center bg-primary text-white">
-            <p>1</p>
-
+<div class="container mt-5">
+    <div *ngIf="selectedCountry; else noCountry">
+      <div class="row">
+        <div class="col-6 d-flex flex-column align-items-center">
+          <button (click)="goBack()">Back</button>
+          <div class="img-fluid">
+            <img
+              [src]="selectedCountry.flags.svg"
+              alt="{{ selectedCountry.name }} flag"
+              style="width: 100%; max-height: 300px; object-fit: cover"
+            />
+          </div>
         </div>
+        <div class="col-6 d-flex flex-column justify-content-center">
+          <div class="container">
+            <div class="container">
+              <h2 class="text-left">{{ selectedCountry.name }}</h2>
+            </div>
+            <div class="container d-flex justify-content-between align-items-center">
+              <div class="container d-flex flex-column">
+                <p><strong>Native name:</strong> {{ selectedCountry.nativeName }}</p>
+                <p><strong>Population:</strong> {{ selectedCountry.population }}</p>
+                <p><strong>Region:</strong> {{ selectedCountry.region }}</p>
+                <p><strong>Capital:</strong> {{ selectedCountry.capital || "Capitale non esistente" }}</p>
+              </div>
+  
+              <div class="container d-flex flex-column">
+                <p>
+                  <strong>Top level domain:</strong>
+                  {{ selectedCountry.topLevelDomain?.join(', ') }}
+                </p>
+  
 
-        <div class="col-6 d-flex justify-content-center align-items-center bg-secondary text-white">
-            <p>2</p>
+                @for (currency of selectedCountry.currencies; track currency.code) {
+                  <p><strong>Currencies: </strong> {{currency.name}}</p>
+
+                }
+  
+
+                @for (language of selectedCountry.languages; track language.iso639_1) {
+                  <p><strong>Languages: </strong> {{language.name}}</p>
+                }
+              </div>
+            </div>
+  
+            <div class="container d-flex">
+              <p><strong>Border Countries:</strong></p>
+              <span *ngIf="selectedCountry.borders?.length > 0; else noBorders">
+                @for (border of selectedCountry.borders; track border) {
+                  <span>{{ border }} </span>
+                }
+              </span>
+              <ng-template #noBorders>
+                <span> Nessun confine disponibile </span>
+              </ng-template>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  
+    <ng-template #noCountry>
+      <p class="text-center">Nessun paese selezionato. Torna alla lista.</p>
+    </ng-template>
+  </div>
+  
